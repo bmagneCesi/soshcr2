@@ -5,12 +5,23 @@
 	<div id="poste_hotellerie" class="col-xs-12 sos-form">
 		<h3 class="title-heading">Personnes répondants à vos critères de recherche :</h3>
 		<br>
+		<div class="col-sm-2 hidden-md hidden-lg hidden-sm">
+			<img style="max-width: 35px; float: right;" onclick="javascript:imprime_bloc('titre', 'imprime_moi');" src="{{ asset('bundles/sos/global/img/print.png') }}" alt="" class="img-responsive form-img">
+		</div>
 		<div class="col-sm-8 col-sm-offset-2">
-			
-				{% for employe in data.employes %}
+			<form method="post">
+				tout sélectionner <input onclick="CocheTout(this, 'mail_demande_utilisateur[]');" type="checkbox">
+
+				<br/><br>
+
+				<div id="imprime_moi">
+                    {% for employe in data.employes %}
 					<div class="container col-sm-6">
 					  <div class="panel result-panel">
-					    <div class="panel-heading result-panel-heading">{{ employe.prenom ~ ' ' ~ employe.nom }}</div>
+					    <div class="panel-heading result-panel-heading">
+							<input  style="position: absolute; left: 30px; top: 15px;" type="checkbox" value="{{employe.email}}" name="mail_demande_utilisateur[]">
+							{{ employe.prenom ~ ' ' ~ employe.nom ~ ' (' ~ employe.age ~' ans)'}}
+						</div>
 					    <div class="panel-body">
 					    	<p>{{ employe.email }}</p>
 					    	<p>{{ employe.telephone }}</p>
@@ -18,7 +29,12 @@
 					  </div>
 					</div>
 				{% endfor %}
+				</div>
+			</form>
 
+		</div>
+		<div class="col-sm-2 hidden-xs">
+			<img style="max-width: 35px; float: right;" onclick="javascript:imprime_bloc('titre', 'imprime_moi');" src="{{ asset('bundles/sos/global/img/print.png') }}" alt="" class="img-responsive form-img">
 		</div>
 
    	<div class="clearfix spacer"></div>

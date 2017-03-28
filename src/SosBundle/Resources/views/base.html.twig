@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Le recrutement en hotellerie restauration !{% endblock %}</title>
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('bundles/sos/global/css/jquery-ui/jquery-ui.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/sos/global/css/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet">
             <link rel="stylesheet" href="{{ asset('bundles/sos/global/css/jquery-ui/jquery-ui.structure.min.css') }}">
             <link rel="stylesheet" href="{{ asset('bundles/sos/global/css/jquery-ui/jquery-ui.theme.min.css') }}">
             <link rel="stylesheet" href="{{ asset('bundles/sos/global/css/style.css') }}">
@@ -17,6 +17,7 @@
             <link rel="stylesheet" href="{{ asset('bundles/sos/login-modal/assets/css/form-elements.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ asset('bundles/sos/sweetalert/sweetalert.css') }}">
             <link rel="stylesheet" href="{{ asset('bundles/sos/login-modal/assets/css/style.css') }}">
+            <link rel="stylesheet" type="text/css"  media="print">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
