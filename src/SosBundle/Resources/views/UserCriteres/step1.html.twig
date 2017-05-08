@@ -1,0 +1,64 @@
+{% extends 'SosBundle::layout.html.twig' %}
+
+{% block sos_body %}
+
+		<div id="poste_hotellerie" class="col-xs-12 sos-form">
+		<h3 class="title-heading">{{ app.user.prenom|capitalize }}, quel type de contrat recherches tu ?</h3>
+		<br>
+		<ul class="col-lg-8 col-lg-offset-2">
+			<form class="informations" method="post" action="{{ path('usercriteres_step_2') }}">
+				<input type="hidden" name="form" value="step_1">
+				{% for contrat in contrats %}
+
+					<li class="
+				        	{% if contrats|length == 5 %}
+				        		col-sm-2 {% if loop.first %} col-sm-offset-1 {% endif %}
+							{% else %}
+								col-sm-{{ 12 / contrats|length }}
+				        	{% endif %} text-center">
+						<label><input type="checkbox" class="main-input" data-name="contrat" name="data[{{ contrat.id }}][contrat]" value="{{ contrat.id }}">&nbsp;{{ contrat.libelle }}</label>
+						<br>
+						<div class="text-left">
+							{% if contrat.id == 4 %}
+
+								<h4>Durée</h4>
+								{% for duree in contrat.duree %}
+									<label><input type="checkbox" class="sub-input sub-input-1" data-name="duree" name="data[{{ contrat.id }}][duree]" value="{{ duree.id }}">&nbsp;{{ duree.libelle }}</label> <br>
+								{% endfor %}
+
+								<h4>Cursus</h4>
+								{% for cursus in cursusScolaire %}
+									<label><input type="checkbox" class="sub-input sub-input-2" data-name="cursus" name="data[{{ contrat.id }}][cursus]" value="{{ cursus.id }}">&nbsp;{{ cursus.libelle }}</label> <br>
+								{% endfor %}
+
+							{% elseif contrat.id == 5 %}
+
+								<h4>Cursus</h4>
+								{% for cursus in cursusScolaire %}
+									<label><input type="checkbox" class="sub-input" data-name="cursus" name="data[{{ contrat.id }}][cursus]" value="{{ cursus.id }}">&nbsp;{{ cursus.libelle }}</label> <br>
+								{% endfor %}
+
+							{% else %}
+
+								<h4>Durée</h4>
+								{% for duree in contrat.duree %}
+									<label><input type="checkbox" class="sub-input" data-name="duree" name="data[{{ contrat.id }}][duree]" value="{{ duree.id }}">&nbsp;{{ duree.libelle }}</label> <br>
+								{% endfor %}
+
+							{% endif %}
+							
+						</div>
+					</li>
+
+				{% endfor %}
+				<div class="clearfix"></div>
+				<br><br><br>
+				<button type="submit" class="btn btn-soshcr text-center">Suivant</button>
+			</form>
+		</ul>
+	
+
+   	<div class="clearfix spacer"></div>
+</div>
+
+{% endblock %}

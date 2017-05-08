@@ -1,0 +1,32 @@
+{% extends 'SosBundle::layout.html.twig' %}
+
+
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('bundles/sos/global/js/ville.js') }}"></script>
+	
+{% endblock %}
+
+{% block sos_body %}
+	
+	<div class="col-xs-12 col-sm-6 col-sm-offset-3 sos-form col-md-4 col-md-offset-4">
+		<h3 class="title-heading">{{ app.user.prenom|capitalize }}, quel etablissements t'interessent ?</h3>
+		<br>
+		<form class="informations" method="post" action="{{ path('usercriteres_step_4') }}">
+			<input type="hidden" name="form" value="step_3">
+			<div class="input-group add-on" style="width:100%">
+				<input class="col-sm-8" required placeholder="Adresse, ville..." name="ville" id="ville">
+				<input class="col-sm-4" required placeholder="Rayon (en km)" name="rayon_emploi" id="rayon_emploi">
+				<div class="input-group-btn" style="width:40px">
+				    <button class="btn btn-default" id="seach-btn" type="submit">
+						<i class="fa fa-search" ></i>
+					</button>	
+			  	</div>
+			</div>
+		</form>
+		
+
+	   	<div class="clearfix spacer"></div>
+	</div>
+
+{% endblock %}

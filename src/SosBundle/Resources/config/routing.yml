@@ -80,57 +80,24 @@ demandeRecommandation:
 
 # INFORMATION USER START
 
-informations_ville:
-    path:     /informations/ville
-    defaults: { _controller: SosBundle:Informations:ville }
+usercriteres_index:
+    path: /usercriteres
+    defaults: { _controller: SosBundle:UserCriteres:index}
 
-informations_classification:
-    path:     /informations/classification
-    defaults: { _controller: SosBundle:Informations:classification }
+usercriteres_step_1:
+    path: /usercriteres/step1
+    defaults: { _controller: SosBundle:UserCriteres:step1}
 
-informations_secteur:
-    path:     /informations/secteur
-    defaults: { _controller: SosBundle:Informations:secteur }
+usercriteres_step_2:
+    path: /usercriteres/step2
+    defaults: { _controller: SosBundle:UserCriteres:step2}
 
-informations_service:
-    path:     /informations/service
-    defaults: { _controller: SosBundle:Informations:service }
+usercriteres_step_3:
+    path: /usercriteres/step3    
+    defaults: { _controller: SosBundle:UserCriteres:step3}
 
-informations_poste:
-    path:     /informations/poste
-    defaults: { _controller: SosBundle:Informations:poste }
-
-informations_contrat:
-    path:     /informations/contrat
-    defaults: { _controller: SosBundle:Informations:contrat }
-
-informations_duree:
-    path:     /informations/duree
-    defaults: { _controller: SosBundle:Informations:duree }
-
-informations_cursus:
-    path:     /informations/cursus
-    defaults: { _controller: SosBundle:Informations:cursus }
-   
-informations_formation:
-    path:     /informations/formation
-    defaults: { _controller: SosBundle:Informations:formation }
-  
-informations_experience:
-    path:     /informations/experience
-    defaults: { _controller: SosBundle:Informations:experience }
-    
-informations_anglais:
-    path:     /informations/anglais
-    defaults: { _controller: SosBundle:Informations:anglais }
-  
-informations_date:
-    path:     /informations/date
-    defaults: { _controller: SosBundle:Informations:date }
-
-informations_recapitulatif:
-    path:     /informations/recapitulatif
-    defaults: { _controller: SosBundle:Informations:recapitulatif }
-
+usercriteres_step_4:
+    path: /usercriteres/step4    
+    defaults: { _controller: SosBundle:UserCriteres:step4}
 
 # INFORMATION USER START

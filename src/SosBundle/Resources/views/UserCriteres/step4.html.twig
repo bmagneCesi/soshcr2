@@ -1,0 +1,35 @@
+{% extends 'SosBundle::layout.html.twig' %}
+
+{% block sos_body %}
+
+		<div id="poste_hotellerie" class="col-xs-12 sos-form">
+		<h3 class="title-heading">{{ app.user.prenom|capitalize }}, quel etablissements t'interessent ?</h3>
+		<br>
+		<ul class="col-lg-8 col-lg-offset-2">
+			<form class="informations" method="post" action="{{ path('usercriteres_step_3') }}">
+				<input type="hidden" name="form" value="step_2">
+				{% for etablissement in etablissements %}
+
+					<li class="
+				        	{% if etablissements|length == 5 %}
+				        		col-sm-2 {% if loop.first %} col-sm-offset-1 {% endif %}
+							{% else %}
+								col-sm-{{ 12 / etablissements|length }}
+				        	{% endif %} text-center">
+						<label><input type="checkbox" class="solo-input" data-name="etablissement" name="etablissement[][id]" value="{{ etablissement.id }}">&nbsp;{{ etablissement.libelle }}</label>
+						<br>
+					</li>
+
+				{% endfor %}
+				<div class="clearfix"></div>
+				<br><br><br>
+				
+				<button type="submit" class="btn btn-soshcr text-center">Suivant</button>
+			</form>
+		</ul>
+	
+
+   	<div class="clearfix spacer"></div>
+</div>
+
+{% endblock %}

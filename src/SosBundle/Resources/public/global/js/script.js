@@ -44,12 +44,9 @@ $(document).ready(function(){
 
     // INFORMATIONS FOMULAIRES MULTIPLES
 
-    var mainInput = $('.main-input').attr('name');
-    var subInput = $('.sub-input').attr('name');
-
     // Selectionne le main topic si un sous element est selectionné
     $('.sub-input').click(function (e) {
-        $(this).parent().parent().children('.main-input').prop('checked', true);
+        $(this).parent().parent().parent().children('label').children('.main-input').prop('checked', true);
     });
 
     // Déselectionne les sous éléments si le main topic est déselectionné
@@ -57,29 +54,60 @@ $(document).ready(function(){
 
         if ($(this).is(':checked') == false)
         {
-            $(this).parent().children('div').children('input[type="checkbox"]').each(function(e){
+            $(this).parent().parent().children('div').children('label').children('input[type="checkbox"]').each(function(e){
                 $(this).prop('checked', false);
             })
         }
     });
 
+    var mainInput = $('.main-input').attr('data-name');
+    var soloInput = $('.solo-input').attr('data-name');
+    var subInput = $('.sub-input').attr('data-name');
+    var subInput1 = $('.sub-input-1').attr('data-name');
+    var subInput2 = $('.sub-input-2').attr('data-name');
+    
     // Effectue les controles sur les selections avant envoie du formulaire
     $('form.informations').on('submit', function(e){
-        if ($('input.main-input:checked').length == 0 && $('input.sub-input:checked').length == 0)
+
+        if ($('.solo-input').length != 0) 
         {
-           e.preventDefault();
-           sweetAlert("Oups...", "Selection manquante : " + mainInput + ", " + subInput, "error");
+            if ($('input.solo-input:checked').length == 0) 
+            {
+                e.preventDefault();
+                sweetAlert("Oups...", "Selection manquante : " + soloInput, "error");     
+            }
+           
         }
-        else if ($('input.main-input:checked').length == 0)
+        else if ($('.main-input').length != 0 && $('.sub-input').length != 0)
         {
-           e.preventDefault();
-           sweetAlert("Oups...", "Selection manquante : " + mainInput, "error");
+            if ($('input.main-input:checked').length == 0 && $('input.sub-input:checked').length == 0 )
+            {
+               e.preventDefault();
+               sweetAlert("Oups...", "Selection manquante : " + mainInput + ", " + subInput, "error");
+            }
+            else if ($('input.main-input:checked').length == 0)
+            {
+               e.preventDefault();
+               sweetAlert("Oups...", "Selection manquante : " + mainInput, "error");
+            }
+            else if ($('input.sub-input:checked').length == 0)
+            {
+                e.preventDefault();
+                sweetAlert("Oups...", "Selection manquante : " + subInput, "error");
+            }
+            else if ($('input.sub-input-1:checked').length == 0 && $('input.sub-input-2:checked').length != 0 ) 
+            {
+                e.preventDefault();
+                sweetAlert("Oups...", "Selection manquante : " + subInput1, "error");
+            }
+            else if ($('input.sub-input-1:checked').length != 0 && $('input.sub-input-2:checked').length == 0) 
+            {
+                e.preventDefault();
+                sweetAlert("Oups...", "Selection manquante : " + subInput2, "error");            
+            }
         }
-        else if ($('input.sub-input:checked').length == 0)
-        {
-            e.preventDefault();
-            sweetAlert("Oups...", "Selection manquante : " + subInput, "error");
-        }
+
+
     });
 
 });

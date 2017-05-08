@@ -1,0 +1,15 @@
+{% extends 'SosBundle::layout.html.twig' %}
+
+{% block sos_body %}
+
+		<div id="poste_hotellerie" class="col-xs-12 sos-form">
+		<h3 class="title-heading">Critères de recherche</h3>
+		<br>
+		<p>Pour que ton profil soit selectionné par des employeur, nous avons besoin de plus d'information à propos de toi ! Remplis le formulaire en liquant sur commencer. Tu pourra modifier tes critères de recherches à tout moment depuis l' espace <a href="{{ path('profil') }}">"Mon compte"</a>.</p>
+		<a href="{{ path('usercriteres_step_1') }}" class="btn btn-soshcr">Commencer</a>
+	
+
+   	<div class="clearfix spacer"></div>
+</div>
+
+{% endblock %}

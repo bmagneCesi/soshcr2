@@ -17,8 +17,16 @@
 			{{ app.user.prenom }}, tu n'a pas encore rempli tes critères de recherches ! <strong><a href="{{ path('informations_contrat') }}">Clique ici</a></strong> pour commencer. 
 	    </div>
 
-      {% endif %}
+      {% else %}
       
+      <h3>Mes critères de recherche</h3>
+      
+      {% for userCritere in app.user.criteres %}
+        {{ dump(userCritere) }}
+      {% endfor %}
+      
+      {% endif %}
+
       <h3>Informations Personnelles</h3>
       <form class="form-horizontal" name="profil-update" method="post" action="{{ path('profil') }}" role="form">
         <div class="form-group">
