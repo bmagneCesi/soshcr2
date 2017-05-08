@@ -6,35 +6,29 @@
 		<h3 class="title-heading">{{ app.user.prenom|capitalize }}, quel type de contrat recherches tu ?</h3>
 		<br>
 		<ul class="col-lg-8 col-lg-offset-2">
+			<form class="informations" action="{{ path('informations_contrat') }}">
+			{% for contrat in contrats %}
 
-		{% for contrat in contrats %}
+				<li class="
+			        	{% if contrats|length == 5 %}
+			        		col-sm-2 {% if loop.first %} col-sm-offset-1 {% endif %}
+						{% else %}
+							col-sm-{{ 12 / contrats|length }}
+			        	{% endif %} text-center">
+					<input type="checkbox" class="main-input" name="contrat" value="{{ contrat.id }}">&nbsp;{{ contrat.libelle }}
+					<br>
+					<div class="text-left">
+						{% for duree in contrat.duree %}
+							<input type="checkbox" class="sub-input" name="duree" value="{{ duree.id }}">&nbsp;{{ duree.libelle }} <br>
+						{% endfor %}
+					</div>
+				</li>
 
-		        <li class="
-		        	{% if contrats|length == 5 %}
-		        		col-sm-2 {% if loop.first %} col-sm-offset-1 {% endif %}
-					{% else %}
-						col-sm-{{ 12 / contrats|length }}
-		        	{% endif %} text-center">
-		        	
-		            <form method="post" action="
-		            {% if contrat.libelle == "CDD" or contrat.libelle == "CDI" or contrat.libelle == "Stage" %}
-		            	{{ path('informations_duree') }}
-		            {% elseif contrat.libelle == "Extra" %}
-		            	{{ path('informations_classification') }}
-		            {% elseif contrat.libelle == "Apprentissage" %}
-		            	{{ path('informations_cursus') }}
-		            {% endif %}">
-		                <button>
-							<img style="max-width:110px" src="{{ asset('bundles/sos/global/img/contrat/' ~ contrat.id ~ '.png') }} " alt="" class="img-responsive form-img">
-		                    {# <p>{{ contrat.libelle }}</p> #}
-		                </button>
-		                <input type="hidden" value="{{ contrat.id }}" name="contrat">
-						<input type="hidden" name="form" value="contrat">
-		            </form>
-		        </li>
-
-		{% endfor %}
-
+			{% endfor %}
+			<div class="clearfix"></div>
+			<br><br><br>
+			<button type="submit" class="btn btn-soshcr text-center">Suivant</button>
+			</form>
 		</ul>
 	
 

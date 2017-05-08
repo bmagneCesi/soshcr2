@@ -42,6 +42,46 @@ $(document).ready(function(){
         $(this).next('input').slideToggle();
     });
 
+    // INFORMATIONS FOMULAIRES MULTIPLES
+
+    var mainInput = $('.main-input').attr('name');
+    var subInput = $('.sub-input').attr('name');
+
+    // Selectionne le main topic si un sous element est selectionné
+    $('.sub-input').click(function (e) {
+        $(this).parent().parent().children('.main-input').prop('checked', true);
+    });
+
+    // Déselectionne les sous éléments si le main topic est déselectionné
+    $('.main-input').click(function (e) {
+
+        if ($(this).is(':checked') == false)
+        {
+            $(this).parent().children('div').children('input[type="checkbox"]').each(function(e){
+                $(this).prop('checked', false);
+            })
+        }
+    });
+
+    // Effectue les controles sur les selections avant envoie du formulaire
+    $('form.informations').on('submit', function(e){
+        if ($('input.main-input:checked').length == 0 && $('input.sub-input:checked').length == 0)
+        {
+           e.preventDefault();
+           sweetAlert("Oups...", "Selection manquante : " + mainInput + ", " + subInput, "error");
+        }
+        else if ($('input.main-input:checked').length == 0)
+        {
+           e.preventDefault();
+           sweetAlert("Oups...", "Selection manquante : " + mainInput, "error");
+        }
+        else if ($('input.sub-input:checked').length == 0)
+        {
+            e.preventDefault();
+            sweetAlert("Oups...", "Selection manquante : " + subInput, "error");
+        }
+    });
+
 });
 
 $(window).on('resize', function(){
