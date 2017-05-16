@@ -17,4 +17,16 @@ class UserController extends Controller
         $nbreco = count($recommandations);
         return $this->render('SosBundle:User:mesrecommandations.html.twig', array("recommandations" => $recommandations, "nbreco"=>$nbreco));
     }
+
+    /**
+     * @Route("/user/{id}", requirements={"id" = "\d+"})
+     */
+    public function userAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('SosBundle:User')->find($id);
+        dump($user);
+        return $this->render('SosBundle:User:userProfil.html.twig', array("user" => $user));
+    }
+
 }

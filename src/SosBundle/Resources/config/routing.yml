@@ -131,6 +131,11 @@ usercriteres_step_9:
 mesrecommandations:
     path:     /mesrecommandations
     defaults: { _controller: SosBundle:User:mesrecommandations}
+
+user_profil:
+    path:     /user/{id}
+    defaults: { _controller: SosBundle:User:user}
+
 # ADMIN
 recommandations:
     path:     /admin/recommandations

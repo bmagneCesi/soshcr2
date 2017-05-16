@@ -1,0 +1,47 @@
+{% extends 'SosBundle::layout.html.twig' %}
+
+{% block sos_body %}
+
+<div class="container" style="padding-top: 60px;">
+  <h1 class="page-header">Mon profil</h1>
+  <div class="row">
+
+    <!-- edit form column -->
+    <div class="col-md-8 col-md-offset-2 col-sm-6 col-sm-offset-3 col-xs-12 personal-info">
+
+      {% if user.criteres|length == 0 %}
+
+		  <div class="alert alert-soshcr alert-dismissable">
+			<i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp;&nbsp;
+			 {{ user.prenom ~ ' ' ~ user.nom}} ne cherche pas encore d'emploi !
+	    </div>
+
+      {% else %}
+
+        {{ dump(user.criteres) }}
+      
+      {% endif %}
+
+      <h3>Informations Personnelles</h3>
+      <form class="form-horizontal" name="profil-update" method="post" action="{{ path('profil') }}" role="form">
+
+        <div class="form-group">
+          <label class=" control-label">{{ user.prenom ~ ' ' ~ user.nom}}</label>
+        </div>
+        <div class="form-group">
+          <label class=" control-label">{{ user.dateNaissance|date('d/m/Y') }}</label>
+        </div>
+        <div class="form-group">
+          <label class=" control-label">{{ user.email }}</label>
+        </div>
+
+{#         <div class="form-group">
+          {% for  formation in user.criteres.formation %}
+              <label class=" control-label">{{ formation.libelle }}</label>
+          {% endfor %}
+        </div> #}
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
